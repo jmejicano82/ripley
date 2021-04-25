@@ -1,0 +1,58 @@
+<form class="col-12" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+  <div class="row">
+
+    <div class="col-12 space-down-40" *ngIf="done">
+      <div class="alert alert-success">
+          <h2>Destinatario creado con exito!</h2>
+      </div>
+    </div>
+
+    <div class="col-6 space-down-20">
+      <label for="exampleInputEmail1">RUT</label>
+      <input type="text" class="form-control" formControlName="rut">
+    </div>
+    <div class="col-6 space-down-20">
+      <label for="exampleInputEmail1">Nombre</label>
+      <input type="text" class="form-control" formControlName="name">
+    </div>
+    <div class="col-6 space-down-20">
+      <label for="exampleInputEmail1">Correo</label>
+      <input type="email" class="form-control" formControlName="email">
+    </div>
+    <div class="col-6 space-down-20">
+      <label for="exampleInputEmail1">Telefono</label>
+      <input type="text" class="form-control" formControlName="number">
+    </div>
+    <div class="col-6 space-down-20">
+      <label for="exampleInputEmail1">Banco</label>
+      <select class="custom-select" id="validationCustom04" formControlName="bank_name" required>
+        <option selected disabled value="">Seleccione</option>
+        <option *ngFor="let bank of banks" [value]="bank.name">
+          {{bank.name}}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-6 space-down-20">
+      <label for="exampleInputEmail1">Tipo de cuenta</label>
+      <select class="custom-select" id="validationCustom04" formControlName="account_type_id" required>
+        <option selected disabled value="">Seleccione</option>
+        <option *ngFor="let account of accounts" [value]="account.id">
+          {{account.name}}
+        </option>
+      </select>
+    </div>
+    <div class="col-6 space-down-40">
+      <label for="exampleInputEmail1">Numero de cuenta</label>
+      <input type="number" class="form-control" formControlName="account_number">
+    </div>
+
+  </div>
+
+  <div class="col-12 text-center space-down">
+    <button type="submit" [disabled]="userForm.invalid" class="btn btn-primary">Crear</button>
+  </div>
+  
+
+</form>

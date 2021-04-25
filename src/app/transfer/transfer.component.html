@@ -1,0 +1,42 @@
+<form class="col-12" [formGroup]="transferForm" (ngSubmit)="onSubmit()">
+
+    <div class="row">
+
+        <div class="col-12 space-down-40" *ngIf="done">
+            <div class="alert alert-success">
+                <h2>Transferencia Realizada!</h2>
+            </div>
+        </div>
+
+        <div class="col-12 space-down-40">
+            <label for="exampleInputEmail1">Destinatario</label>
+            <ng-select (change)="getSelected($event)" formControlName="user">
+              <ng-option [value]="user" *ngFor="let user of users">
+                {{user.name}} | {{user.rut}}
+              </ng-option>
+            </ng-select>
+        </div>
+
+        <div class="col-12 space-down-40">
+            <p>RUT: <b>{{userSelected ? userSelected.rut : '' }}</b></p>
+            <p>Nombre: <b>{{userSelected ? userSelected.name : '' }}</b></p>
+            <p>Correo: <b>{{userSelected ? userSelected.email : '' }}</b></p>
+            <p>Banco: <b>{{userSelected ? userSelected.bank_name : '' }}</b></p>
+            <p>Tipo de cuenta: <b>{{userSelected ? userSelected.tipo_cuenta : '' }}</b></p>
+        </div>
+
+        <div class="col-1 space-down-40">
+            <label for="exampleInputEmail1">Monto:</label>
+        </div>
+        <div class="col-11 space-down-40">
+            <input type="number" value="monto" class="form-control" formControlName="monto">
+        </div>
+  
+    </div>
+  
+    <div class="col-12 text-center space-down">
+      <button [disabled]="transferForm.invalid" type="submit" class="btn btn-primary">Transferir</button>
+    </div>
+    
+  
+  </form>
